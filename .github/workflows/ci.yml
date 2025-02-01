@@ -10,25 +10,32 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     steps: 
-      
+
+      # Clones repo 
       - name: Checkout
         uses: actions/checkout@v3
-        
+
+      # Sets up Node.js
       - name: Use Node.js 
         uses: actions/setup-node@v3
         with: 
           node-version: '16.x'
-          
+
+      # Installs dependencies
       - name: Install npm 
         run: npm install
 
+      # Runs the linter to enforce coding standards
       - name: Run Lint
         run: npm run lint
         continue-on-error: false
 
+      # Run the unit tests
       - name: Run Tests
         run: npm test
 
+      # Creates a coverage report
+      # NOTE: This will produce an error since the API key is not included for security reasons.
       - name: Vitest Coverage Report
       # uses: davelosert/vitest-coverage-report-action@edb1ad1e6a02b1dd761ddd26739a396ee537c08e
         uses: davelosert/vitest-coverage-report-action@v2.7.0
