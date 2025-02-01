@@ -28,3 +28,9 @@ jobs:
 
       - name: Run Tests
         run: npm test
+
+      - name: Vitest Coverage Report
+      # uses: davelosert/vitest-coverage-report-action@edb1ad1e6a02b1dd761ddd26739a396ee537c08e
+        uses: davelosert/vitest-coverage-report-action@v2.7.0
+        with:
+          github-token: ${{ github.token }}
